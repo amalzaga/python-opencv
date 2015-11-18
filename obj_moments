@@ -68,13 +68,11 @@ while(1):
         cv2.line(frame,(x-10,y),(x+10,y),(255,255,255),1)
         cv2.line(frame,(x,y-10),(x,y+10),(255,255,255),1)
 
-
-    font = cv2.FONT_HERSHEY_PLAIN
-    texto = 'area: ' + str(area) + ' x: ' + str(x) + ' y: ' + str(y)
-
-    cv2.putText(res,texto,(12,264), font, 1,(255,255,255),1,0)
-    texto = 'Ix: ' + str(ix) + ' Iy: ' + str(iy)
-    cv2.putText(res,texto,(12,280), font, 1,(255,255,255),1,0)
+        font = cv2.FONT_HERSHEY_PLAIN
+        texto = 'area: ' + str(area) + ' x: ' + str(x) + ' y: ' + str(y)
+        cv2.putText(res,texto,(12,264), font, 1,(255,255,255),1,0)
+        texto = 'Ix: ' + str(ix) + ' Iy: ' + str(iy)
+        cv2.putText(res,texto,(12,280), font, 1,(255,255,255),1,0)
 
     cv2.imshow('Live view',frame)
     cv2.imshow('HSV mask',res)

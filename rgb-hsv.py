@@ -1,3 +1,9 @@
+# Creates a solid color image wich can be changed by using two sets
+# of trackbars RGB and HSV. Changing one affects the other
+# It is a practical way to better understanding of colorspaces.
+#
+# Written by Amador Alzaga 
+
 #!/usr/bin/python
 
 import cv2

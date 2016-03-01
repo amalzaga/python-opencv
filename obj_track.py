@@ -45,17 +45,16 @@ def tb_callback(x):
 
 
 # mouse callback function
-def draw_circle(event,x,y,flags,param):
+def switch_track(event,x,y,flags,param):
     global tracking
     if event == cv2.EVENT_LBUTTONDBLCLK:
-        #cv2.circle(res,(x,y),20,(255,0,0),-1)
         tracking = not(tracking)
 
 
 cv2.namedWindow('Live view')
 cv2.namedWindow('HSV mask')
 
-cv2.setMouseCallback('Live view',draw_circle)
+cv2.setMouseCallback('Live view',switch_track)
 
 cv2.createTrackbar('Hue','HSV mask',h,179,tb_callback)
 cv2.createTrackbar('Hue aperture  ','HSV mask',ap,50,tb_callback)
@@ -110,22 +109,24 @@ while(1):
         cv2.putText(res,texto,(12,280), font, 1,(255,255,255),1,0)
         
         if tracking == 1:
-            if x > (im_width/2 + 20):
+            dzone = 20
+            
+            if x > (im_width/2 + dzone):
                 angle_pan = angle_pan - 1
                 duty_pan = 100 - ((float(angle_pan) / 180) * duty_span + duty_min)
                 PWM.set_duty_cycle(servo_pan, duty_pan)
 
-            if x < (im_width/2 - 20):
+            if x < (im_width/2 - dzone):
                 angle_pan = angle_pan + 1
                 duty_pan = 100 - ((float(angle_pan) / 180) * duty_span + duty_min)
                 PWM.set_duty_cycle(servo_pan, duty_pan)
 
-            if y > (im_height/2 + 20):
+            if y > (im_height/2 + dzone):
                 angle_tilt = angle_tilt - 1
                 duty_tilt = 100 - ((float(angle_tilt) / 180) * duty_span + duty_min)
                 PWM.set_duty_cycle(servo_tilt, duty_tilt)
 
-            if y < (im_height/2 - 20):
+            if y < (im_height/2 - dzone):
                 angle_tilt = angle_tilt + 1
                 duty_tilt = 100 - ((float(angle_tilt) / 180) * duty_span + duty_min)
                 PWM.set_duty_cycle(servo_tilt, duty_tilt)
